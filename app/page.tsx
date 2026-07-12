@@ -3,6 +3,8 @@ import ProjectGrid from '@/components/ProjectGrid'
 import { client } from "@/sanity/lib/client"
 import Link from 'next/link'
 
+export const revalidate = 0; // <-- INI BARIS SAKTINYA (Artinya: jangan cache data)
+
 async function getProjects() {
   const query = `*[_type == "project"] | order(_createdAt desc) {
     _id,
