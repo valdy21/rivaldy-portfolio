@@ -11,6 +11,14 @@ export const projectType = defineType({
       type: 'string',
       validation: (rule) => rule.required(),
     }),
+
+    {
+      name: 'urutan',
+      title: 'Urutan Tampil (Angka)',
+      type: 'number',
+      description: 'Isi dengan angka (1, 2, 3, dst). Angka terkecil (1) akan tampil paling duluan.'
+    },
+    
     defineField({
       name: 'slug',
       title: 'Slug (Link URL)',

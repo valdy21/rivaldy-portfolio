@@ -6,7 +6,7 @@ import Link from 'next/link'
 export const revalidate = 0; // <-- INI BARIS SAKTINYA (Artinya: jangan cache data)
 
 async function getProjects() {
-  const query = `*[_type == "project"] | order(_createdAt desc) {
+  const query = `*[_type == "project"] | order(urutan asc, _createdAt desc) {
     _id,
     title,
     "imageUrl": mainImage.asset->url,
