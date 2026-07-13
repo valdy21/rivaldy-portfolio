@@ -21,7 +21,6 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
           <motion.div 
             key={project._id} 
             onClick={() => setSelectedProject(project)}
-            // Style kartu dibikin kontras halus: putih di atas background abu muda (light), atau abu gelap di atas hitam murni (dark)
             className="group cursor-pointer flex flex-col rounded-[2rem] bg-white dark:bg-[#1d1d1f] overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-black/10 dark:hover:shadow-white/5 transition-all duration-500"
             whileHover={{ y: -4, scale: 0.99 }}
             whileTap={{ scale: 0.97 }}
@@ -61,7 +60,6 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             onClick={() => setSelectedProject(null)}
-            // Efek blur maksimal ala VisionOS / iOS
             className="fixed inset-0 bg-[#f5f5f7]/60 dark:bg-black/60 backdrop-blur-3xl z-50 flex items-center justify-center p-4 md:p-12 cursor-zoom-out"
           >
             <motion.div
@@ -70,10 +68,11 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
-              // DI SINI PERUBAHANNYA: Mengubah overflow-hidden menjadi overflow-y-auto dan menambah max-h-[90vh]
-              className="relative w-full max-w-5xl flex flex-col md:flex-row bg-white/80 dark:bg-[#1d1d1f]/80 backdrop-blur-xl rounded-[2.5rem] overflow-x-hidden overflow-y-auto max-h-[90vh] overscroll-contain shadow-2xl border border-white/50 dark:border-white/10 cursor-default"
+              className="relative w-full max-w-5xl flex flex-col md:flex-row bg-white/80 dark:bg-[#1d1d1f]/80 backdrop-blur-xl rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/50 dark:border-white/10 cursor-default"
             >
-              <div className="flex-1 bg-[#f5f5f7]/50 dark:bg-black/30 flex items-center justify-center overflow-hidden p-6 md:p-12">
+              {/* PERBAIKAN: Mengubah overflow-hidden menjadi overflow-visible pada container gambar mobile */}
+              <div className="flex-1 bg-[#f5f5f7]/50 dark:bg-black/30 flex items-center justify-center overflow-visible md:overflow-hidden p-6 md:p-12">
+                {/* PERBAIKAN: Memastikan max-height responsif dan object-contain digunakan */}
                 <img 
                   src={selectedProject.imageUrl} 
                   alt={selectedProject.title} 
