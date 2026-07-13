@@ -68,21 +68,21 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
-              // PERBAIKAN: Kotak modal dibuat max-h-[90vh] dan overflow-y-auto agar tombol close tidak akan pernah terpotong di HP
               className="relative w-full max-w-5xl max-h-[90vh] flex flex-col md:flex-row bg-white/90 dark:bg-[#1d1d1f]/90 backdrop-blur-xl rounded-[2rem] md:rounded-[2.5rem] overflow-y-auto md:overflow-hidden shadow-2xl border border-black/5 dark:border-white/10 cursor-default"
             >
-              {/* PERBAIKAN SPACING GAMBAR: p-8 biar rapi, min-h dan max-h disesuaikan biar proporsional */}
-              <div className="w-full md:flex-1 bg-[#f5f5f7]/50 dark:bg-black/30 flex items-center justify-center p-8 md:p-12 min-h-[30vh]">
+              {/* KUNCI PERBAIKAN CONTAINER: Menggunakan padding responsif yang pas, menjamin tidak ada luapan */}
+              <div className="w-full md:flex-1 bg-[#f5f5f7]/50 dark:bg-black/30 flex items-center justify-center p-6 sm:p-8 md:p-12">
+                {/* KUNCI PERBAIKAN GAMBAR: Menggunakan w-auto h-auto dan max-h-[40vh] agar rasio vertikal/9:16 mengempis proporsional tanpa terpotong */}
                 <img
                   src={selectedProject.imageUrl}
                   alt={selectedProject.title}
-                  className="max-w-full max-h-[35vh] md:max-h-[70vh] object-contain rounded-xl shadow-sm mx-auto"
+                  className="w-auto h-auto max-w-full max-h-[40vh] md:max-h-[65vh] object-contain rounded-xl shadow-sm block mx-auto"
                 />
               </div>
 
-              {/* PERBAIKAN SPACING TEKS: Padding disamakan jadi p-8 biar ngasih ruang nafas ke tulisan "KARYA" */}
-              <div className="w-full md:w-[400px] lg:w-[450px] p-8 md:p-10 flex flex-col justify-between border-t md:border-t-0 md:border-l border-black/5 dark:border-white/5">
-                <div className="mb-6 md:mb-0 md:overflow-y-auto md:pr-4">
+              {/* TEXT & BUTTON CONTAINER */}
+              <div className="w-full md:w-[380px] lg:w-[420px] p-6 sm:p-8 md:p-10 flex flex-col justify-between border-t md:border-t-0 md:border-l border-black/5 dark:border-white/5">
+                <div className="mb-6 md:mb-0 md:overflow-y-auto md:pr-2">
                   <span className="text-xs font-semibold tracking-wider text-[#86868b] uppercase mb-3 block">
                     {selectedProject.category ? selectedProject.category.replace('-', ' ') : 'Karya'}
                   </span>
@@ -96,7 +96,7 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
 
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="mt-4 md:mt-8 w-full bg-gray-100 dark:bg-white/10 text-black dark:text-white py-4 rounded-2xl md:rounded-full font-semibold hover:bg-gray-200 dark:hover:bg-white/20 active:scale-95 transition-all text-sm flex-shrink-0"
+                  className="mt-4 md:mt-8 w-full bg-gray-100 dark:bg-white/10 text-black dark:text-white py-4 rounded-2xl font-semibold hover:bg-gray-200 dark:hover:bg-white/20 active:scale-95 transition-all text-sm flex-shrink-0"
                 >
                   Close
                 </button>
