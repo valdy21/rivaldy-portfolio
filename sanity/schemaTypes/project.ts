@@ -49,6 +49,8 @@ export const projectType = defineType({
           { title: 'Branding & Identity', value: 'branding' },
         ],
       },
+      // TAMBAHKAN BARIS INI BIAR PILIHAN KOSONGNYA HILANG:
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'description',
